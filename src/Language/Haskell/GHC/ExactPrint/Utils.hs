@@ -31,6 +31,7 @@ import GHC.Types.Name
 import GHC.Types.Name.Reader
 import GHC.Types.SrcLoc
 import GHC.Data.FastString
+import qualified GHC.Data.Strict (Maybe, Maybe (Just), Maybe (Nothing))
 import GHC.Utils.Outputable ( showPprUnsafe )
 
 import Data.List (sortBy, elemIndex)
@@ -402,16 +403,16 @@ To be absolutely sure, we make the delta versions use -ve values.
 
 hackSrcSpanToAnchor :: SrcSpan -> Anchor
 hackSrcSpanToAnchor (UnhelpfulSpan s) = error $ "hackSrcSpanToAnchor : UnhelpfulSpan:" ++ show s
-hackSrcSpanToAnchor (RealSrcSpan r Nothing) = Anchor r UnchangedAnchor
-hackSrcSpanToAnchor (RealSrcSpan r (Just (BufSpan (BufPos s) (BufPos e))))
+hackSrcSpanToAnchor (RealSrcSpan r GHC.Data.Strict.Nothing) = Anchor r UnchangedAnchor
+hackSrcSpanToAnchor (RealSrcSpan r (GHC.Data.Strict.Just (BufSpan (BufPos s) (BufPos e))))
   = if s <= 0 && e <= 0
     then Anchor r (MovedAnchor (deltaPos (-s) (-e)))
     else Anchor r UnchangedAnchor
 
 hackAnchorToSrcSpan :: Anchor -> SrcSpan
-hackAnchorToSrcSpan (Anchor r UnchangedAnchor) = RealSrcSpan r Nothing
+hackAnchorToSrcSpan (Anchor r UnchangedAnchor) = RealSrcSpan r GHC.Data.Strict.Nothing
 hackAnchorToSrcSpan (Anchor r (MovedAnchor dp))
-  = RealSrcSpan r (Just (BufSpan (BufPos s) (BufPos e)))
+  = RealSrcSpan r (GHC.Data.Strict.Just (BufSpan (BufPos s) (BufPos e)))
   where
     s = - (getDeltaLine dp)
     e = - (deltaColumn dp)
