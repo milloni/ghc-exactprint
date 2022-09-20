@@ -67,8 +67,8 @@ instance Default AddEpAnn where
 instance Default AnnKeywordId where
   def = Annlarrowtail  {- gotta pick one -}
 
-instance Default TrailingAnn where
-  def = AddLollyAnnU {-gotta pick one -} def
+--instance Default TrailingAnn where
+--  def = AddLollyAnnU {-gotta pick one -} def
 
 instance Default AnnContext where
   def = AnnContext Nothing [] []

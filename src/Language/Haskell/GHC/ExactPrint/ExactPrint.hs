@@ -1190,9 +1190,6 @@ markKwT :: (Monad m, Monoid w) => TrailingAnn -> EP w m TrailingAnn
 markKwT (AddSemiAnn ss)    = AddSemiAnn    <$> markKwA AnnSemi ss
 markKwT (AddCommaAnn ss)   = AddCommaAnn   <$> markKwA AnnComma ss
 markKwT (AddVbarAnn ss)    = AddVbarAnn    <$> markKwA AnnVbar ss
-markKwT (AddRarrowAnn ss)  = AddRarrowAnn  <$> markKwA AnnRarrow ss
-markKwT (AddRarrowAnnU ss) = AddRarrowAnnU <$> markKwA AnnRarrowU ss
-markKwT (AddLollyAnnU ss)  = AddLollyAnnU  <$> markKwA AnnLollyU ss
 
 -- ---------------------------------------------------------------------
 

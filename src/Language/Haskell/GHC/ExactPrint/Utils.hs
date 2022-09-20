@@ -357,25 +357,16 @@ trailingAnnToAddEpAnn :: TrailingAnn -> AddEpAnn
 trailingAnnToAddEpAnn (AddSemiAnn ss)    = AddEpAnn AnnSemi ss
 trailingAnnToAddEpAnn (AddCommaAnn ss)   = AddEpAnn AnnComma ss
 trailingAnnToAddEpAnn (AddVbarAnn ss)    = AddEpAnn AnnVbar ss
-trailingAnnToAddEpAnn (AddRarrowAnn ss)  = AddEpAnn AnnRarrow ss
-trailingAnnToAddEpAnn (AddRarrowAnnU ss) = AddEpAnn AnnRarrowU ss
-trailingAnnToAddEpAnn (AddLollyAnnU ss)  = AddEpAnn AnnLollyU ss
 
 trailingAnnLoc :: TrailingAnn -> EpaLocation
 trailingAnnLoc (AddSemiAnn ss)    = ss
 trailingAnnLoc (AddCommaAnn ss)   = ss
 trailingAnnLoc (AddVbarAnn ss)    = ss
-trailingAnnLoc (AddRarrowAnn ss)  = ss
-trailingAnnLoc (AddRarrowAnnU ss) = ss
-trailingAnnLoc (AddLollyAnnU ss)  = ss
 
 setTrailingAnnLoc :: TrailingAnn -> EpaLocation -> TrailingAnn
 setTrailingAnnLoc (AddSemiAnn _)    ss = (AddSemiAnn ss)
 setTrailingAnnLoc (AddCommaAnn _)   ss = (AddCommaAnn ss)
 setTrailingAnnLoc (AddVbarAnn _)    ss = (AddVbarAnn ss)
-setTrailingAnnLoc (AddRarrowAnn _)  ss = (AddRarrowAnn ss)
-setTrailingAnnLoc (AddRarrowAnnU _) ss = (AddRarrowAnnU ss)
-setTrailingAnnLoc (AddLollyAnnU _)  ss = (AddLollyAnnU ss)
 
 
 addEpAnnLoc :: AddEpAnn -> EpaLocation
