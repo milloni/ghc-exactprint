@@ -227,8 +227,13 @@ getPreprocessedSrcDirectPrim cppOptions src_fn = do
       txt <- GHC.liftIO $ readFileGhc hspp_fn
       return (txt, buf, dflags')
 
-showErrorMessages :: GHC.ErrorMessages -> String
-showErrorMessages msgs = intercalate "\n" $ map show $ GHC.bagToList msgs
+showErrorMessages :: GHC.Messages GHC.DriverMessage -> String
+showErrorMessages msgs =
+  GHC.renderWithContext GHC.defaultSDocContext
+    $ GHC.vcat
+    $ GHC.pprMsgEnvelopeBagWithLoc
+    $ GHC.getMessages
+    $ msgs
 
 injectCppOptions :: CppOptions -> GHC.DynFlags -> GHC.DynFlags
 injectCppOptions CppOptions{..} dflags =
