@@ -29,11 +29,13 @@ import qualified GHC.Fingerprint.Type     as GHC
 import qualified GHC.Parser.Errors.Ppr    as GHC
 import qualified GHC.Parser.Lexer         as GHC
 import qualified GHC.Settings             as GHC
+import qualified GHC.Types.Error          as GHC (getMessages)
 import qualified GHC.Types.SourceError    as GHC
 import qualified GHC.Types.SourceFile     as GHC
 import qualified GHC.Types.SrcLoc         as GHC
 import qualified GHC.Utils.Error          as GHC
 import qualified GHC.Utils.Fingerprint    as GHC
+import qualified GHC.Utils.Outputable     as GHC
 import GHC.Types.SrcLoc (mkSrcSpan, mkSrcLoc)
 import GHC.Data.FastString (mkFastString)
 
