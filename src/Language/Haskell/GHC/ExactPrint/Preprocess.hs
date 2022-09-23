@@ -22,6 +22,7 @@ import qualified GHC.Data.StringBuffer    as GHC
 import qualified GHC.Driver.Config        as GHC
 import qualified GHC.Driver.Config.Parser as GHC
 import qualified GHC.Driver.Env           as GHC
+import qualified GHC.Driver.Errors.Types  as GHC
 import qualified GHC.Driver.Phases        as GHC
 import qualified GHC.Driver.Pipeline      as GHC
 import qualified GHC.Fingerprint.Type     as GHC
@@ -282,7 +283,7 @@ parseError pst = do
        -- (warns,errs) = GHC.getMessages pst dflags
      -- throw $ GHC.mkSrcErr (GHC.unitBag $ GHC.mkPlainErrMsg dflags sspan err)
      -- GHC.throwErrors (fmap GHC.mkParserErr (GHC.getErrorMessages pst))
-     GHC.throwErrors (fmap GHC.pprError (GHC.getErrorMessages pst))
+     GHC.throwErrors (fmap GHC.GhcPsMessage (GHC.getPsErrorMessages pst))
 
 -- ---------------------------------------------------------------------
 
